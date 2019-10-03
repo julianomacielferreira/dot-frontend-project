@@ -71,7 +71,7 @@ $(function () {
         const startSlider = () => {
             topSliderIntervalID = setInterval(
                 switchSlides,
-                3000
+                2000
             );
         };
 
