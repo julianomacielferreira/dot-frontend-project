@@ -4,15 +4,6 @@ body {
   color: #ffffff;
   background: #434343;
 }
-/* 
-a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-h1 {
-  text-align: center;
-} */
 
 /* Slider Top Text Header */
 .content-slider-top {
@@ -98,7 +89,7 @@ h1 {
 /* End Slider Top */
 
 /* Slider Middle */
-.container {
+.container-slider-middle {
   width: 100%;
   margin: 40px auto;
   overflow: auto;
@@ -151,11 +142,22 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
+  background: #707070;
+}
+
+.content-middle-container-img {
+  text-align: center;
+  padding: 1rem;
 }
 .content-middle-img {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
-  border: 10px solid #313131;
+  border: 15px solid #313131;
+}
+
+.content-middle h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 /* End Content Middle */
