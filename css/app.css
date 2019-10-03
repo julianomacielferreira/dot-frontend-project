@@ -14,7 +14,7 @@ h1 {
   text-align: center;
 } */
 
-/* Slider Top */
+/* Slider Top Text Header */
 .content-slider-top {
   position: relative;
 }
@@ -46,24 +46,23 @@ h1 {
   color: #333333;
   text-decoration: none;
 }
-/* End Text Header */
+/* End Slider Top Text Header */
 
 /* Slider Top */
 .top-slider {
   overflow: hidden;
 }
 .top-slider-set {
-  display: flex; /* we use a flexbox as an easy way to size our slides, align them horizontally and prevent them from breaking on new lines */
+  display: flex;
 }
 .top-slider-item {
-  flex: 0 0 100%; /* this translates to: each slide should be full width */
-  position: relative; /* allows us to move our slides left and right */
-
-  left: 0; /* setting an initial value for left so the transition works */
+  flex: 0 0 100%;
+  position: relative;
+  left: 0;
 }
 .top-slider-item img {
-  width: 100%; /* the image should span the whole slide */
-  height: 100vh; /* adjust the height as needed to preserve aspect ratio */
+  width: 100%;
+  height: 100vh;
   /* opacity: 0.5; */
 }
 .top-slider-set,
@@ -74,12 +73,10 @@ h1 {
 }
 
 .top-slider-bullet-set {
-  position: absolute; /* lets us place our bullet points on top of the slider, or anywhere we want for that matter */
-  bottom: 50px; /* 15px of space between our bullets and the bottom of the slider */
-  /* centers bullets horizontally */
+  position: absolute;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  /* --- */
 }
 
 .top-slider-bullet {

@@ -2,6 +2,10 @@ import $ from 'jquery';
 
 $(function () {
 
+    $('.gotoMiddleSection').on('click', () => {
+        $('.content-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
+    });
+
     $('.top-slider').each(function () {
 
         var topSliderIntervalID = null;
