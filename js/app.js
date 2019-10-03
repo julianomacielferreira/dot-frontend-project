@@ -23,7 +23,8 @@ $(function () {
 });
 
 
-$(document).ready(() => {
+$(function () {
+
     $('.slider').each(function () {
         var slideSwitcherIntervalID = null;
 

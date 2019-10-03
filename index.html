@@ -12,11 +12,12 @@
 
 <body>
 
+    <!-- Slider Top -->
     <section class="content-header">
         <div class="header">
             <h1>Lorem Ipsum</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="javascript:alert('Rolar até segunda seção')" class="arrow-down">
+            <a href="javascript:$('.content-slider')[0].scrollIntoView();" class="arrow-down">
                 <i class="fa fa-arrow-down fa-4x" aria-hidden="true"></i>
             </a>
         </div>
@@ -37,9 +38,10 @@
         </div>
 
     </section>
+    <!-- End Slider Top -->
 
+    <!-- Slider Middle -->
     <section class="content-slider">
-
         <div class="container">
             <div class="slider-outer">
                 <a href="javascript:void(0);" class="prev">
@@ -54,24 +56,64 @@
                 <a href="javascript:void(0);" class="next">
                     <i class="fa fa-arrow-right fa-4x" aria-hidden="true"></i>
                 </a>
+                <span>
+                    <h1>Lorem Ipsum</h1>
+                    <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor, animi!</span>
+                </span>
             </div>
         </div>
 
     </section>
+    <!-- End Slider Middle -->
 
-    <section class="content-slider">
-
+    <section class="content-middle">
+        <div>
+            <img src="img/image1.jpg" class="content-middle-img">
+        </div>
+        <div>
+            <span>
+                <h1>Lorem Ipsum</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ipsam.</p>
+                <p><b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ipsam.</b></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ipsam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ipsam.</p>
+            </span>
+        </div>
     </section>
 
-    <section class="contact">
+    <!-- Content Accordion -->
+    <section class="content-accordion">
 
     </section>
+    <!-- End Content Accordion -->
+
+    <!-- Content Accordion -->
+    <section class="content-contact">
+        <form action="#">
+
+            <div class="fom-group">
+                <input type="text" placeholder="*Nome: Informe seu nome">
+            </div>
+
+            <div class="fom-group">
+                <input type="text" placeholder="*E-mail: Informe seu email">
+            </div>
+
+            <div class="fom-group">
+                <input type="text" placeholder="*Telefone: (__) ___-___">
+            </div>
+
+            <div class="fom-group">
+                <textarea name="message" id="" cols="30" rows="10" placeholder="*Mensagem: Escreva aqui"></textarea>
+            </div>
+
+        </form>
+    </section>
+    <!-- End Content Accordion -->
 
     <section class="footer">
-
+        <p>Lorem Ipsum</p>
     </section>
-
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
