@@ -14,8 +14,94 @@ h1 {
   text-align: center;
 }
 
+/* Text Header */
+.content-header {
+  position: relative;
+}
+
+.content-header .header {
+  position: absolute;
+  width: 100%;
+  top: 5%;
+  z-index: 999;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-header .header h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: #4d6128;
+  margin: 0.1rem 0;
+}
+
+.content-header .header p {
+  font-size: 1.2rem;
+  color: #213800;
+  font-weight: bold;
+}
+
+.content-header .header a {
+  color: #333333;
+  text-decoration: none;
+}
+/* End Text Header */
+
+/* Slider Top */
+.slider {
+  overflow: hidden; /* prevents the default scrolling behaviour on overflowing elements and hides the slides that are overflowing on the left and on the right side of the slider */
+}
+.slide-set {
+  display: flex; /* we use a flexbox as an easy way to size our slides, align them horizontally and prevent them from breaking on new lines */
+}
+.slide {
+  flex: 0 0 100%; /* this translates to: each slide should be full width */
+  position: relative; /* allows us to move our slides left and right */
+
+  left: 0; /* setting an initial value for left so the transition works */
+}
+.slide img {
+  width: 100%; /* the image should span the whole slide */
+  height: 100vh; /* adjust the height as needed to preserve aspect ratio */
+  opacity: 0.5;
+}
+.slide-set,
+.bullet-set {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.bullet-set {
+  position: absolute; /* lets us place our bullet points on top of the slider, or anywhere we want for that matter */
+  bottom: 50px; /* 15px of space between our bullets and the bottom of the slider */
+  /* centers bullets horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+  /* --- */
+}
+
+.bullet {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* makes out bullets round */
+  background: white;
+  display: inline-block; /* lays our bullets out horizontally */
+  margin: 0 6px; /* spacing the bullets apart so they're not clustered together */
+  border: 10px solid #313131;
+}
+
+.bullet.active {
+  opacity: 1;
+  background: #4d6128;
+  border: 10px solid #ffffff;
+}
+/* End Slider Top */
+
+/* Slider Middle */
 .container {
-  width: 540px;
+  width: 100%;
   margin: 40px auto;
   overflow: auto;
 }
@@ -58,3 +144,4 @@ h1 {
   margin-left: -45px;
   z-index: 100;
 }
+/* End Slider Middle */

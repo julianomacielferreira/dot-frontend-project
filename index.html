@@ -12,31 +12,66 @@
 
 <body>
 
-    <div class="container">
+    <section class="content-header">
         <div class="header">
             <h1>Lorem Ipsum</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="arrow-down">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="javascript:alert('Rolar até segunda seção')" class="arrow-down">
                 <i class="fa fa-arrow-down fa-4x" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="slider-outer">
-            <a href="#" class="prev">
-                <i class="fa fa-arrow-left fa-4x" aria-hidden="true"></i>
-            </a>
-            <!-- <img src="img/arrow-left.png" class="prev" alt="Prev"> -->
-            <div class="slider-inner">
-                <img src="img/image1.jpg" class="active">
-                <img src="img/image2.jpg">
-                <img src="img/image3.jpg">
-                <img src="img/image4.jpg">
-            </div>
-            <a href="#" class="next">
-                <i class="fa fa-arrow-right fa-4x" aria-hidden="true"></i>
-            </a>
-            <!-- <img src="img/arrow-right.png" class="next" alt="Next"> -->
+
+        <div class="slider">
+            <ul class="slide-set">
+                <li class="slide">
+                    <img src="img/image1.jpg" alt="Slide">
+                </li>
+                <li class="slide">
+                    <img src="img/image2.jpg" alt="Slide">
+                </li>
+                <li class="slide">
+                    <img src="img/image3.jpg" alt="Slide">
+                </li>
+            </ul>
+            <ul class="bullet-set"></ul>
         </div>
-    </div>
+
+    </section>
+
+    <section class="content-slider">
+
+        <div class="container">
+            <div class="slider-outer">
+                <a href="javascript:void(0);" class="prev">
+                    <i class="fa fa-arrow-left fa-4x" aria-hidden="true"></i>
+                </a>
+                <div class="slider-inner">
+                    <img src="img/image1.jpg" class="active">
+                    <img src="img/image2.jpg">
+                    <img src="img/image3.jpg">
+                    <img src="img/image4.jpg">
+                </div>
+                <a href="javascript:void(0);" class="next">
+                    <i class="fa fa-arrow-right fa-4x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="content-slider">
+
+    </section>
+
+    <section class="contact">
+
+    </section>
+
+    <section class="footer">
+
+    </section>
+
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
