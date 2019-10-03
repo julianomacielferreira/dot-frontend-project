@@ -1,8 +1,26 @@
+/* Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: #ffffff;
   background: #434343;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
 }
 
 /* Slider Top Text Header */
@@ -77,14 +95,14 @@ body {
   background: white;
   display: inline-block; /* lays our bullets out horizontally */
   margin: 0 6px; /* spacing the bullets apart so they're not clustered together */
-  border: 10px solid #313131;
+  border: 5px solid #313131;
   cursor: pointer;
 }
 
 .top-slider-bullet.active {
   opacity: 1;
   background: #4d6128;
-  border: 10px solid #ffffff;
+  border: 5px solid #ffffff;
 }
 /* End Slider Top */
 
@@ -156,8 +174,21 @@ body {
   border: 15px solid #313131;
 }
 
-.content-middle h1 {
+.content-middle-container-text h1 {
   font-size: 2rem;
   text-transform: uppercase;
+  padding: 10px;
+}
+
+.content-middle-container-text p {
+  padding: 10px;
 }
 /* End Content Middle */
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 2rem;
+  background-color: #313131;
+}
+/* End Footer */
