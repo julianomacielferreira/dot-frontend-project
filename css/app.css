@@ -120,7 +120,7 @@ h1 {
   height: 300px;
 }
 
-.slider-inner img.active {
+.slider-inner img.active-slider {
   display: inline-block;
 }
 
