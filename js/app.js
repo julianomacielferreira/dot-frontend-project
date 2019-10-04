@@ -3,7 +3,7 @@ import $ from 'jquery';
 $(function () {
 
     $('.gotoMiddleSection').on('click', () => {
-        $('.content-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
+        $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
     });
 
     $('.top-slider').each(function () {
