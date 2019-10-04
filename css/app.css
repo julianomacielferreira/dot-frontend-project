@@ -217,9 +217,15 @@ body {
 
 .accordion-item {
   background-color: #707070;
-  border-radius: 0.4rem;
   margin-bottom: 0.2rem;
-  padding: 1rem;
+}
+
+.accordion-item:first-child {
+  border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.accordion-item:last-child {
+  border-radius: 0 0 0.4rem 0.4rem;
 }
 
 .accordion-link {
@@ -243,9 +249,25 @@ body {
 }
 
 .accordion-item-content {
-  max-height: 0;
+  display: none;
   overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  color: #707070;
+  padding: 1rem;
 }
+
+.accordion-item-content > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accordion-item-content img {
+  width: 250px;
+  border: 10px solid #707070;
+}
+
 /* End Accordion Content */
 
 /* Form Content */
