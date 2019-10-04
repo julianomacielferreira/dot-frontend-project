@@ -75,7 +75,7 @@ $(function () {
         const startSlider = () => {
             topSliderIntervalID = setInterval(
                 switchSlides,
-                2000
+                3000
             );
         };
 
@@ -115,10 +115,7 @@ $(function () {
 
         startSlider();
     });
-});
 
-
-$(function () {
     $('.next').on('click', function () {
         var currentImg = $('.active-slider');
         var nextImg = currentImg.next();
@@ -137,6 +134,42 @@ $(function () {
             currentImg.removeClass('active-slider').css('z-index', -10);
             prevImg.addClass('active-slider').css('z-index', 10);
         }
+    });
+
+    $(".accordion-item").on('click', function () {
+
+        const accordionItem = $(this);
+        const accordionItemContent = accordionItem.children('.accordion-item-content');
+        const accordionLink = accordionItem.children('.accordion-link');
+
+        const removeActiveClass = () => {
+
+            $('.accordion-item-content').removeClass('active').hide('slow');
+            $('.fa-arrow-up').attr('style', 'display: none;');
+            $('.fa-arrow-down').attr('style', 'display: block;');
+        };
+
+        const changeArrowsTo = (down, up) => {
+
+            accordionLink.children('.fa-arrow-down').attr('style', `display: ${down};`);
+            accordionLink.children('.fa-arrow-up').attr('style', `display: ${up};`);
+        };
+
+        if (accordionItemContent.hasClass('active')) {
+
+            removeActiveClass();
+
+            changeArrowsTo('block', 'none');
+
+        } else {
+
+            removeActiveClass();
+
+            changeArrowsTo('none', 'block');
+
+            accordionItemContent.addClass('active').show('slow');
+        }
+
     });
 });
 

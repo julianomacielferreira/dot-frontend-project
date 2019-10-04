@@ -201,7 +201,7 @@ body {
 /* Accordion Content */
 .container-accordion {
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   background-color: #bfbfbf;
   display: flex;
   align-items: center;
@@ -229,14 +229,16 @@ body {
 }
 
 .accordion-link {
-  font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 0.2rem 0;
+  font-size: 1.4rem;
+  padding-left: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .accordion-link i {
@@ -263,9 +265,21 @@ body {
   justify-content: space-between;
 }
 
+.accordion-item-content h2 {
+  padding: 1rem;
+}
+
 .accordion-item-content img {
   width: 250px;
   border: 10px solid #707070;
+}
+
+.accordion-item-content p {
+  padding: 1rem;
+}
+
+.accordion-item-content .active {
+  display: block;
 }
 
 /* End Accordion Content */
