@@ -8,35 +8,38 @@ const TopSlider = (() => {
     let intervalID = null;
 
     const stop = () => {
+
         clearInterval(intervalID);
         intervalID = null;
     };
 
     const start = () => {
-        intervalID = setInterval(
-            change_slide,
-            intervalTimeout
-        );
+
+        if (!intervalID) {
+
+            intervalID = setInterval(
+                change_slide,
+                intervalTimeout
+            );
+        }
     };
 
     const wrap = () => {
 
         const topSliderItemNotClone = slider.find('.top-slider-item:not(.clone)');
 
-        if (position() >= topSliderItemNotClone.length) {
+        if (set_slider_at() >= topSliderItemNotClone.length) {
 
-            position(0);
+            set_slider_at(0, true, false);
 
-        } else if (position() < 0) {
-
-            position(topSliderItemNotClone.eq(-1).index() - 1);
         }
     };
 
     const change_slide = () => {
-        position(
-            position() + 1, // Se não tem position ele vai calcular automaticamente
-            wrap
+
+        set_slider_at(
+            set_slider_at() + 1, // Se não tem position ele vai calcular automaticamente
+            true
         );
     };
 
@@ -44,28 +47,39 @@ const TopSlider = (() => {
 
         const topSliderBullets = slider.find('.top-slider-bullet');
         topSliderBullets.removeClass('active');
-        topSliderBullets.eq(position()).addClass('active');
+        topSliderBullets.eq(set_slider_at()).addClass('active');
     };
 
-    const position = (position, callback) => {
+    const calculate_new_position = (topSliderItem) => {
 
-        const slider = $('.top-slider');
+        let sliderItemPositionLeft = topSliderItem.position().left;
+        let newPosition = Math.round(Math.abs(sliderItemPositionLeft) / slider.width() - 1);
+
+        return newPosition;
+    }
+
+    const set_slider_at = (position, isTopWrap, isToAnimate) => {
+
         const topSliderItem = slider.find('.top-slider-item');
 
         if (position == undefined) {
-
-            let sliderItemPositionLeft = topSliderItem.position().left;
-            let newPosition = Math.round(Math.abs(sliderItemPositionLeft) / slider.width() - 1);
-
-            return newPosition;
+            return calculate_new_position(topSliderItem);
         }
 
-        topSliderItem.animate({ left: -(1 + position) * slider.width() + 'px' }, true ? animationTimeout : 0)
+        const animationProperties = { left: -(1 + position) * slider.width() + 'px' };
+
+        if (isToAnimate == undefined) {
+            isToAnimate = true;
+        }
+
+        topSliderItem.animate(animationProperties, isToAnimate ? animationTimeout : 0)
             .promise().then(
                 () => {
+
                     update_bullets();
-                    if (callback !== undefined) {
-                        callback();
+
+                    if (isTopWrap) {
+                        wrap();
                     }
                 }
             );
@@ -87,7 +101,7 @@ const TopSlider = (() => {
 
             topSliderBullet.on('click', () => {
 
-                position(currentIndex, wrap);
+                set_slider_at(currentIndex, true);
 
             }).on('mouseenter', () => {
 
@@ -100,17 +114,16 @@ const TopSlider = (() => {
         });
 
         const slideSet = slider.find('.top-slider-set');
+
         const first = slideSet.children(':first-child').clone();
-        const last = slideSet.children(':last-child').clone();
-
         first.addClass('clone');
-        last.addClass('clone');
-
         slideSet.append(first);
+
+        const last = slideSet.children(':last-child').clone();
+        last.addClass('clone');
         slideSet.prepend(last);
 
         topSliderItems.css('left', '-=' + slider.width() + 'px');
-
     };
 
     const init = () => {
