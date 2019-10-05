@@ -31,7 +31,6 @@ const TopSlider = (() => {
         if (set_slider_at() >= topSliderItemNotClone.length) {
 
             set_slider_at(0, true, false);
-
         }
     };
 
@@ -178,6 +177,51 @@ const MiddleSlider = (() => {
     };
 })();
 
+const Accordion = (() => {
+
+    const removeActiveClass = () => {
+
+        $('.accordion-item-content').removeClass('active').hide('slow');
+        $('.fa-arrow-up').attr('style', 'display: none;');
+        $('.fa-arrow-down').attr('style', 'display: block;');
+    };
+
+    const changeArrowsTo = (accordionLink, down, up) => {
+
+        accordionLink.children('.fa-arrow-down').attr('style', `display: ${down};`);
+        accordionLink.children('.fa-arrow-up').attr('style', `display: ${up};`);
+    };
+
+    const init = () => {
+
+        $(".accordion-item").on('click', function () {
+
+            const accordionItem = $(this);
+            const accordionItemContent = accordionItem.children('.accordion-item-content');
+            const accordionLink = accordionItem.children('.accordion-link');
+
+            if (accordionItemContent.hasClass('active')) {
+
+                removeActiveClass();
+
+                changeArrowsTo(accordionLink, 'block', 'none');
+
+            } else {
+
+                removeActiveClass();
+
+                changeArrowsTo(accordionLink, 'none', 'block');
+
+                accordionItemContent.addClass('active').show('slow');
+            }
+        });
+    };
+
+    return {
+        init: init
+    };
+})();
+
 $(function () {
 
     // Anchor to the middle section
@@ -192,40 +236,7 @@ $(function () {
     MiddleSlider.init();
 
     // Accordion
-    $(".accordion-item").on('click', function () {
-
-        const accordionItem = $(this);
-        const accordionItemContent = accordionItem.children('.accordion-item-content');
-        const accordionLink = accordionItem.children('.accordion-link');
-
-        const removeActiveClass = () => {
-
-            $('.accordion-item-content').removeClass('active').hide('slow');
-            $('.fa-arrow-up').attr('style', 'display: none;');
-            $('.fa-arrow-down').attr('style', 'display: block;');
-        };
-
-        const changeArrowsTo = (down, up) => {
-
-            accordionLink.children('.fa-arrow-down').attr('style', `display: ${down};`);
-            accordionLink.children('.fa-arrow-up').attr('style', `display: ${up};`);
-        };
-
-        if (accordionItemContent.hasClass('active')) {
-
-            removeActiveClass();
-
-            changeArrowsTo('block', 'none');
-
-        } else {
-
-            removeActiveClass();
-
-            changeArrowsTo('none', 'block');
-
-            accordionItemContent.addClass('active').show('slow');
-        }
-    });
+    Accordion.init();
 
     // Form
     $(".float-form-group").each(function () {
