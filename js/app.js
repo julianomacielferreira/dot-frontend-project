@@ -1,20 +1,81 @@
 import $ from 'jquery';
 
-$(function () {
+const TopSlider = (() => {
 
-    // Anchor to the middle section
-    $('.slide-down-to').on('click', () => {
-        $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
-    });
+    const slider = $('.top-slider');
+    const intervalTimeout = 3000;
+    const animationTimeout = 1000;
+    let intervalID = null;
 
-    // Slider top
-    $('.top-slider').each(function () {
+    const stop = () => {
+        clearInterval(intervalID);
+        intervalID = null;
+    };
 
-        var topSliderIntervalID = null;
+    const start = () => {
+        intervalID = setInterval(
+            change_slide,
+            intervalTimeout
+        );
+    };
 
-        const topSliderItem = $(this).find('.top-slider-item');
+    const change_slide = () => {
+        position(
+            position() + 1, // Se não tem position ele vai calcular automaticamente
+            wrap
+        );
+    };
 
-        topSliderItem.each((currentIndex) => {
+    const wrap = () => {
+
+        const topSliderItemNotClone = slider.find('.top-slider-item:not(.clone)');
+
+        if (position() >= topSliderItemNotClone.length) {
+
+            position(0);
+
+        } else if (position() < 0) {
+
+            position(topSliderItemNotClone.eq(-1).index() - 1);
+        }
+    };
+
+    const update_bullets = () => {
+
+        const topSliderBullets = slider.find('.top-slider-bullet');
+        topSliderBullets.removeClass('active');
+        topSliderBullets.eq(position()).addClass('active');
+    };
+
+    const position = (position, callback) => {
+
+        const slider = $('.top-slider');
+        const topSliderItem = slider.find('.top-slider-item');
+
+        if (position == undefined) {
+
+            let sliderItemPositionLeft = topSliderItem.position().left;
+            let newPosition = Math.round(Math.abs(sliderItemPositionLeft) / slider.width() - 1);
+
+            return newPosition;
+        }
+
+        topSliderItem.animate({ left: -(1 + position) * slider.width() + 'px' }, true ? animationTimeout : 0)
+            .promise().then(
+                () => {
+                    update_bullets();
+                    if (callback !== undefined) {
+                        callback();
+                    }
+                }
+            );
+    };
+
+    const setup = () => {
+
+        const topSliderItems = slider.find('.top-slider-item');
+
+        topSliderItems.each((currentIndex) => {
 
             const topSliderBullet = $('<li class="top-slider-bullet" />');
 
@@ -22,23 +83,23 @@ $(function () {
                 topSliderBullet.addClass('active');
             }
 
-            $(this).find('.top-slider-bullet-set').append(topSliderBullet);
+            slider.find('.top-slider-bullet-set').append(topSliderBullet);
 
             topSliderBullet.on('click', () => {
 
-                sliderPosition(currentIndex, true, wrap);
+                position(currentIndex, true, wrap);
 
             }).on('mouseenter', () => {
 
-                stopSlider();
+                stop();
 
             }).on('mouseleave', () => {
 
-                startSlider();
+                start();
             });
         });
 
-        const slideSet = $(this).find('.top-slider-set');
+        const slideSet = slider.find('.top-slider-set');
         const first = slideSet.children(':first-child').clone();
         const last = slideSet.children(':last-child').clone();
 
@@ -48,96 +109,85 @@ $(function () {
         slideSet.append(first);
         slideSet.prepend(last);
 
-        topSliderItem.css('left', '-=' + $(this).width() + 'px');
+        topSliderItems.css('left', '-=' + slider.width() + 'px');
 
-        const sliderPosition = (position, animate, callback) => {
+    };
 
-            const topSliderItem = $(this).find('.top-slider-item');
+    const init = () => {
 
-            if (position == undefined) {
-                var sliderItemPositionLeft = topSliderItem.position().left;
-                return Math.round(Math.abs(sliderItemPositionLeft) / $(this).width() - 1);
+        setup();
+
+        start();
+    };
+
+    return {
+        init: init
+    };
+})();
+
+const MiddleSlider = (() => {
+
+    const init = () => {
+
+        $('.next').on('click', function () {
+            let currentImg = $('.active-slider');
+            let nextImg = currentImg.next();
+
+            if (nextImg.length > 0) {
+                currentImg.removeClass('active-slider').css('z-index', -10);
+                nextImg.addClass('active-slider').css('z-index', 10);
             }
+        });
 
-            if (animate == undefined) {
-                animate = true;
+        $('.prev').on('click', function () {
+            let currentImg = $('.active-slider');
+            let prevImg = currentImg.prev();
+
+            if (prevImg.length > 0) {
+                currentImg.removeClass('active-slider').css('z-index', -10);
+                prevImg.addClass('active-slider').css('z-index', 10);
             }
+        });
 
-            topSliderItem.animate({ left: -(1 + position) * $(this).width() + 'px' }, animate ? 1000 : 0)
-                .promise().then(
-                    () => {
-                        updateBullets();
-                        if (callback) {
-                            callback();
-                        }
-                    }
-                );
-        };
+    };
 
-        const startSlider = () => {
-            topSliderIntervalID = setInterval(
-                switchSlides,
-                3000
-            );
-        };
+    return {
+        init: init
+    };
+})();
 
-        const switchSlides = () => {
-            sliderPosition(
-                sliderPosition() + 1,
-                true,
-                wrap
-            );
-        };
+$(function () {
 
-        const stopSlider = () => {
-            clearInterval(topSliderIntervalID);
-            topSliderIntervalID = null;
-        };
-
-        const wrap = () => {
-
-            const topSliderItemNotClone = $(this).find('.top-slider-item:not(.clone)');
-
-            if (sliderPosition() >= topSliderItemNotClone.length) {
-
-                sliderPosition(0, false);
-
-            } else if (sliderPosition() < 0) {
-
-                sliderPosition(topSliderItemNotClone.eq(-1).index() - 1, false);
-            }
-        };
-
-        const updateBullets = () => {
-
-            const topSliderBullets = $(this).find('.top-slider-bullet');
-            topSliderBullets.removeClass('active');
-            topSliderBullets.eq(sliderPosition()).addClass('active');
-        };
-
-        startSlider();
+    // Anchor to the middle section
+    $('.slide-down-to').on('click', () => {
+        $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
     });
+
+    // Slider top
+    TopSlider.init();
 
     // Slider middle
-    $('.next').on('click', function () {
-        var currentImg = $('.active-slider');
-        var nextImg = currentImg.next();
+    MiddleSlider.init();
 
-        if (nextImg.length > 0) {
-            currentImg.removeClass('active-slider').css('z-index', -10);
-            nextImg.addClass('active-slider').css('z-index', 10);
-        }
-    });
+    // $('.next').on('click', function () {
+    //     var currentImg = $('.active-slider');
+    //     var nextImg = currentImg.next();
 
-    $('.prev').on('click', function () {
-        var currentImg = $('.active-slider');
-        var prevImg = currentImg.prev();
+    //     if (nextImg.length > 0) {
+    //         currentImg.removeClass('active-slider').css('z-index', -10);
+    //         nextImg.addClass('active-slider').css('z-index', 10);
+    //     }
+    // });
 
-        if (prevImg.length > 0) {
-            currentImg.removeClass('active-slider').css('z-index', -10);
-            prevImg.addClass('active-slider').css('z-index', 10);
-        }
-    });
+    // $('.prev').on('click', function () {
+    //     var currentImg = $('.active-slider');
+    //     var prevImg = currentImg.prev();
+
+    //     if (prevImg.length > 0) {
+    //         currentImg.removeClass('active-slider').css('z-index', -10);
+    //         prevImg.addClass('active-slider').css('z-index', 10);
+    //     }
+    // });
 
     // Accordion
     $(".accordion-item").on('click', function () {
