@@ -71,17 +71,14 @@ const TopSlider = (() => {
             isToAnimate = true;
         }
 
-        sliderTopItem.animate(animationProperties, isToAnimate ? animationTimeout : 0)
-            .promise().then(
-                () => {
+        sliderTopItem.animate(animationProperties, isToAnimate ? animationTimeout : 0).promise().then(() => {
 
-                    update_bullets();
+            update_bullets();
 
-                    if (isTopWrap) {
-                        wrap();
-                    }
-                }
-            );
+            if (isTopWrap) {
+                wrap();
+            }
+        });
     };
 
     const setup = () => {
