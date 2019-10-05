@@ -264,10 +264,6 @@ body {
   justify-content: space-between;
 }
 
-.accordion-item-content h2 {
-  padding: 1rem;
-}
-
 .accordion-item-content img {
   width: 250px;
   border: 10px solid #707070;
@@ -337,10 +333,11 @@ textarea {
   min-height: 50px;
   margin: 10px 0;
   border: none;
+  padding-left: 10px;
 }
 
 textarea {
-  padding: 20px;
+  padding-top: 20px;
 }
 
 input[type="text"].invalid,
