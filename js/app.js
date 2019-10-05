@@ -2,10 +2,12 @@ import $ from 'jquery';
 
 $(function () {
 
-    $('.gotoMiddleSection').on('click', () => {
+    // Anchor to the middle section
+    $('.slide-down-to').on('click', () => {
         $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
     });
 
+    // Slider top
     $('.top-slider').each(function () {
 
         var topSliderIntervalID = null;
@@ -116,6 +118,7 @@ $(function () {
         startSlider();
     });
 
+    // Slider middle
     $('.next').on('click', function () {
         var currentImg = $('.active-slider');
         var nextImg = currentImg.next();
@@ -136,6 +139,7 @@ $(function () {
         }
     });
 
+    // Accordion
     $(".accordion-item").on('click', function () {
 
         const accordionItem = $(this);
@@ -171,6 +175,7 @@ $(function () {
         }
     });
 
+    // Form
     $(".float-form-group").each(function () {
 
         const floatFormGroup = $(this);
@@ -195,6 +200,3 @@ $(function () {
     });
 
 });
-
-
-
