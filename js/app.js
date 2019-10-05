@@ -222,6 +222,39 @@ const Accordion = (() => {
     };
 })();
 
+const FloatFormGroup = (() => {
+
+    const init = () => {
+
+        $(".float-form-group").each(function () {
+
+            const floatFormGroup = $(this);
+            const floatField = floatFormGroup.children('.floatField');
+
+            floatField.on('focus', () => {
+                floatFormGroup.addClass('active');
+            });
+
+            floatField.on('blur', () => {
+
+                if (!floatField.val()) {
+
+                    floatField.addClass("invalid");
+                    floatFormGroup.removeClass('active');
+
+                } else {
+
+                    floatField.removeClass("invalid");
+                }
+            });
+        });
+    };
+
+    return {
+        init: init
+    };
+})();
+
 $(function () {
 
     // Anchor to the middle section
@@ -238,28 +271,6 @@ $(function () {
     // Accordion
     Accordion.init();
 
-    // Form
-    $(".float-form-group").each(function () {
-
-        const floatFormGroup = $(this);
-        const floatField = floatFormGroup.children('.floatField');
-
-        floatField.on('focus', () => {
-            floatFormGroup.addClass('active');
-        });
-
-        floatField.on('blur', () => {
-
-            if (!floatField.val()) {
-
-                floatField.addClass("invalid");
-                floatFormGroup.removeClass('active');
-
-            } else {
-
-                floatField.removeClass("invalid");
-            }
-        });
-    });
-
+    // Floating labels
+    FloatFormGroup.init();
 });
