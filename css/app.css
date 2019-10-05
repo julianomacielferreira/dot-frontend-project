@@ -338,6 +338,34 @@ textarea {
   margin: 10px 0;
   border: none;
 }
+
+textarea {
+  padding: 20px;
+}
+
+.float-form-group input,
+textarea {
+  border: none;
+  outline: 0;
+}
+
+.float-form-group.active label {
+  transform: translate(0, 10px) scale(0.75);
+}
+
+label {
+  position: absolute;
+  font-size: 16px;
+  color: #717171;
+  transform-origin: top left;
+  transform: translate(0, 25px) scale(1);
+  transition: all 0.1s ease-in-out;
+  margin-left: 10px;
+}
+
+label > b {
+  color: #303030;
+}
 /* End Form Content */
 
 /* Footer */

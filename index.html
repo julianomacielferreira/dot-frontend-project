@@ -235,24 +235,29 @@
             <form action="#" class="form">
 
                 <div class="form-group-column">
-
-                    <div>
-                        <input type="text" placeholder="*Nome: Informe seu nome">
+                    <div class="float-form-group">
+                        <label for="nome"><b>*Nome:</b> Informe seu nome</label>
+                        <input type="text" id="nome" class="floatTextField" placeholder="">
                     </div>
 
                     <div class="form-group-row">
-                        <div>
-                            <input type="text" placeholder="*E-mail: Informe seu email">
+                        <div class="float-form-group">
+                            <label for="email"><b>*E-mail:</b> Informe seu email</label>
+                            <input type="text" id="email" class="floatTextField" placeholder="">
                         </div>
 
-                        <div>
-                            <input type="text" placeholder="*Telefone: (__) ___-___">
+                        <div class="float-form-group">
+                            <label for="telefone"><b>*Telefone:</b> (__) ___-___</label>
+                            <input type="text" id="telefone" class="floatTextField" placeholder="">
                         </div>
                     </div>
 
                     <div>
-                        <textarea name="message" id="" cols="30" rows="10"
-                            placeholder="*Mensagem: Escreva aqui"></textarea>
+                        <div class="float-form-group">
+                            <label for="Mensagem"><b>*Mensagem:</b> Escreva aqui</label>
+                            <textarea id="mensagem" cols="30" rows="10" class="floatTextField"
+                                placeholder=""></textarea>
+                        </div>
                     </div>
 
                 </div>

@@ -169,8 +169,24 @@ $(function () {
 
             accordionItemContent.addClass('active').show('slow');
         }
-
     });
+
+    $(".float-form-group").each(function () {
+
+        const floatFormGroup = $(this);
+        const floatTextField = floatFormGroup.children('.floatTextField');
+
+        floatTextField.on('focus', () => {
+            floatFormGroup.addClass('active');
+        });
+
+        floatTextField.on('blur', () => {
+            if (!floatTextField.val()) {
+                floatFormGroup.removeClass('active');
+            }
+        });
+    });
+
 });
 
 
