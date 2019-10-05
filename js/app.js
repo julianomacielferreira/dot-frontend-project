@@ -19,13 +19,6 @@ const TopSlider = (() => {
         );
     };
 
-    const change_slide = () => {
-        position(
-            position() + 1, // Se não tem position ele vai calcular automaticamente
-            wrap
-        );
-    };
-
     const wrap = () => {
 
         const topSliderItemNotClone = slider.find('.top-slider-item:not(.clone)');
@@ -38,6 +31,13 @@ const TopSlider = (() => {
 
             position(topSliderItemNotClone.eq(-1).index() - 1);
         }
+    };
+
+    const change_slide = () => {
+        position(
+            position() + 1, // Se não tem position ele vai calcular automaticamente
+            wrap
+        );
     };
 
     const update_bullets = () => {
@@ -87,7 +87,7 @@ const TopSlider = (() => {
 
             topSliderBullet.on('click', () => {
 
-                position(currentIndex, true, wrap);
+                position(currentIndex, wrap);
 
             }).on('mouseenter', () => {
 
@@ -127,7 +127,7 @@ const TopSlider = (() => {
 
 const MiddleSlider = (() => {
 
-    const init = () => {
+    const setup_next_arrow = () => {
 
         $('.next').on('click', function () {
             let currentImg = $('.active-slider');
@@ -138,6 +138,9 @@ const MiddleSlider = (() => {
                 nextImg.addClass('active-slider').css('z-index', 10);
             }
         });
+    };
+
+    const setup_prev_arrow = () => {
 
         $('.prev').on('click', function () {
             let currentImg = $('.active-slider');
@@ -148,7 +151,13 @@ const MiddleSlider = (() => {
                 prevImg.addClass('active-slider').css('z-index', 10);
             }
         });
+    };
 
+    const init = () => {
+
+        setup_next_arrow();
+
+        setup_prev_arrow();
     };
 
     return {
@@ -168,26 +177,6 @@ $(function () {
 
     // Slider middle
     MiddleSlider.init();
-
-    // $('.next').on('click', function () {
-    //     var currentImg = $('.active-slider');
-    //     var nextImg = currentImg.next();
-
-    //     if (nextImg.length > 0) {
-    //         currentImg.removeClass('active-slider').css('z-index', -10);
-    //         nextImg.addClass('active-slider').css('z-index', 10);
-    //     }
-    // });
-
-    // $('.prev').on('click', function () {
-    //     var currentImg = $('.active-slider');
-    //     var prevImg = currentImg.prev();
-
-    //     if (prevImg.length > 0) {
-    //         currentImg.removeClass('active-slider').css('z-index', -10);
-    //         prevImg.addClass('active-slider').css('z-index', 10);
-    //     }
-    // });
 
     // Accordion
     $(".accordion-item").on('click', function () {
