@@ -65,36 +65,36 @@ body {
 /* End Slider Top Text Header */
 
 /* Slider Top */
-.top-slider {
+.slider-top {
   overflow: hidden;
 }
-.top-slider-set {
+.slider-top-set {
   display: flex;
 }
-.top-slider-item {
+.slider-top-item {
   flex: 0 0 100%;
   position: relative;
   left: 0;
 }
-.top-slider-item img {
+.slider-top-item img {
   width: 100%;
   height: 100vh;
 }
-.top-slider-set,
-.top-slider-bullet-set {
+.slider-top-set,
+.slider-top-bullet-set {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.top-slider-bullet-set {
+.slider-top-bullet-set {
   position: absolute;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.top-slider-bullet {
+.slider-top-bullet {
   width: 40px;
   height: 40px;
   border-radius: 50%; /* makes out bullets round */
@@ -105,7 +105,7 @@ body {
   cursor: pointer;
 }
 
-.top-slider-bullet.active {
+.slider-top-bullet.active {
   opacity: 1;
   background: #4d6128;
   border: 5px solid #ffffff;

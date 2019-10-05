@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 const TopSlider = (() => {
 
-    const slider = $('.top-slider');
+    const slider = $('.slider-top');
     const intervalTimeout = 3000;
     const animationTimeout = 1000;
     let intervalID = null;
@@ -26,9 +26,9 @@ const TopSlider = (() => {
 
     const wrap = () => {
 
-        const topSliderItemNotClone = slider.find('.top-slider-item:not(.clone)');
+        const sliderTopItemNotClone = slider.find('.slider-top-item:not(.clone)');
 
-        if (set_slider_at() >= topSliderItemNotClone.length) {
+        if (set_slider_at() >= sliderTopItemNotClone.length) {
 
             set_slider_at(0, true, false);
         }
@@ -44,14 +44,14 @@ const TopSlider = (() => {
 
     const update_bullets = () => {
 
-        const topSliderBullets = slider.find('.top-slider-bullet');
-        topSliderBullets.removeClass('active');
-        topSliderBullets.eq(set_slider_at()).addClass('active');
+        const sliderTopBullets = slider.find('.slider-top-bullet');
+        sliderTopBullets.removeClass('active');
+        sliderTopBullets.eq(set_slider_at()).addClass('active');
     };
 
-    const calculate_new_position = (topSliderItem) => {
+    const calculate_new_position = (sliderTopItem) => {
 
-        let sliderItemPositionLeft = topSliderItem.position().left;
+        let sliderItemPositionLeft = sliderTopItem.position().left;
         let newPosition = Math.round(Math.abs(sliderItemPositionLeft) / slider.width() - 1);
 
         return newPosition;
@@ -59,10 +59,10 @@ const TopSlider = (() => {
 
     const set_slider_at = (position, isTopWrap, isToAnimate) => {
 
-        const topSliderItem = slider.find('.top-slider-item');
+        const sliderTopItem = slider.find('.slider-top-item');
 
         if (position == undefined) {
-            return calculate_new_position(topSliderItem);
+            return calculate_new_position(sliderTopItem);
         }
 
         const animationProperties = { left: -(1 + position) * slider.width() + 'px' };
@@ -71,7 +71,7 @@ const TopSlider = (() => {
             isToAnimate = true;
         }
 
-        topSliderItem.animate(animationProperties, isToAnimate ? animationTimeout : 0)
+        sliderTopItem.animate(animationProperties, isToAnimate ? animationTimeout : 0)
             .promise().then(
                 () => {
 
@@ -86,17 +86,17 @@ const TopSlider = (() => {
 
     const setup = () => {
 
-        const topSliderItems = slider.find('.top-slider-item');
+        const sliderTopItems = slider.find('.slider-top-item');
 
-        topSliderItems.each((currentIndex) => {
+        sliderTopItems.each((currentIndex) => {
 
-            const topSliderBullet = $('<li class="top-slider-bullet" />');
+            const topSliderBullet = $('<li class="slider-top-bullet" />');
 
             if (currentIndex == 0) {
                 topSliderBullet.addClass('active');
             }
 
-            slider.find('.top-slider-bullet-set').append(topSliderBullet);
+            slider.find('.slider-top-bullet-set').append(topSliderBullet);
 
             topSliderBullet.on('click', () => {
 
@@ -112,7 +112,7 @@ const TopSlider = (() => {
             });
         });
 
-        const slideSet = slider.find('.top-slider-set');
+        const slideSet = slider.find('.slider-top-set');
 
         const first = slideSet.children(':first-child').clone();
         first.addClass('clone');
@@ -122,7 +122,7 @@ const TopSlider = (() => {
         last.addClass('clone');
         slideSet.prepend(last);
 
-        topSliderItems.css('left', '-=' + slider.width() + 'px');
+        sliderTopItems.css('left', '-=' + slider.width() + 'px');
     };
 
     const init = () => {
