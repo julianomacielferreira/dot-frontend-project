@@ -35,7 +35,7 @@ body {
   position: relative;
 }
 
-.container-slider-top .header {
+.container-slider-top .slider-top-header {
   position: absolute;
   width: 100%;
   top: 5%;
@@ -45,20 +45,20 @@ body {
   align-items: center;
 }
 
-.container-slider-top .header h1 {
+.container-slider-top .slider-top-header h1 {
   font-size: 3rem;
   text-transform: uppercase;
   color: #4d6128;
   margin: 0.1rem 0;
 }
 
-.container-slider-top .header p {
+.container-slider-top .slider-top-header p {
   font-size: 1.2rem;
   color: #213800;
   font-weight: bold;
 }
 
-.container-slider-top .header a {
+.container-slider-top .slider-top-header a {
   color: #333333;
   text-decoration: none;
 }
