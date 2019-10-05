@@ -312,7 +312,7 @@ body {
   padding-left: 10px;
 }
 
-.form .btn {
+.form input[type="button"] {
   background-color: #ffffff;
   border: none;
   border-radius: 5px;
