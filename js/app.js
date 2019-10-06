@@ -1,19 +1,19 @@
 import $ from 'jquery';
 
-const TopSlider = (() => {
+const TopSlider = (function () {
 
     const slider = $('.slider-top');
     const intervalTimeout = 3000;
     const animationTimeout = 1000;
     let intervalID = null;
 
-    const stop = () => {
+    const stop = function () {
 
         clearInterval(intervalID);
         intervalID = null;
     };
 
-    const start = () => {
+    const start = function () {
 
         if (!intervalID) {
 
@@ -24,7 +24,7 @@ const TopSlider = (() => {
         }
     };
 
-    const wrap = () => {
+    const wrap = function () {
 
         const sliderTopItemNotClone = slider.find('.slider-top-item:not(.clone)');
 
@@ -34,7 +34,7 @@ const TopSlider = (() => {
         }
     };
 
-    const change_slide = () => {
+    const change_slide = function () {
 
         set_slider_at(
             set_slider_at() + 1, // Se não tem position ele vai calcular automaticamente
@@ -42,7 +42,7 @@ const TopSlider = (() => {
         );
     };
 
-    const update_bullets = () => {
+    const update_bullets = function () {
 
         const sliderTopBullets = slider.find('.slider-top-bullet');
         sliderTopBullets.removeClass('active');
@@ -71,7 +71,7 @@ const TopSlider = (() => {
             isToAnimate = true;
         }
 
-        sliderTopItem.animate(animationProperties, isToAnimate ? animationTimeout : 0).promise().then(() => {
+        sliderTopItem.animate(animationProperties, isToAnimate ? animationTimeout : 0).promise().then(function () {
 
             update_bullets();
 
@@ -81,7 +81,7 @@ const TopSlider = (() => {
         });
     };
 
-    const setup = () => {
+    const setup = function () {
 
         const sliderTopItems = slider.find('.slider-top-item');
 
@@ -95,15 +95,15 @@ const TopSlider = (() => {
 
             slider.find('.slider-top-bullet-set').append(topSliderBullet);
 
-            topSliderBullet.on('click', () => {
+            topSliderBullet.on('click', function () {
 
                 set_slider_at(currentIndex, true);
 
-            }).on('mouseenter', () => {
+            }).on('mouseenter', function () {
 
                 stop();
 
-            }).on('mouseleave', () => {
+            }).on('mouseleave', function () {
 
                 start();
             });
@@ -122,7 +122,7 @@ const TopSlider = (() => {
         sliderTopItems.css('left', '-=' + slider.width() + 'px');
     };
 
-    const init = () => {
+    const init = function () {
 
         setup();
 
@@ -134,49 +134,9 @@ const TopSlider = (() => {
     };
 })();
 
-const MiddleSlider = (() => {
+const Accordion = (function () {
 
-    const setup_next_arrow = () => {
-
-        $('.next').on('click', () => {
-            let currentImg = $('.active-slider');
-            let nextImg = currentImg.next();
-
-            if (nextImg.length > 0) {
-                currentImg.removeClass('active-slider').css('z-index', -10);
-                nextImg.addClass('active-slider').css('z-index', 10);
-            }
-        });
-    };
-
-    const setup_prev_arrow = () => {
-
-        $('.prev').on('click', () => {
-            let currentImg = $('.active-slider');
-            let prevImg = currentImg.prev();
-
-            if (prevImg.length > 0) {
-                currentImg.removeClass('active-slider').css('z-index', -10);
-                prevImg.addClass('active-slider').css('z-index', 10);
-            }
-        });
-    };
-
-    const init = () => {
-
-        setup_next_arrow();
-
-        setup_prev_arrow();
-    };
-
-    return {
-        init: init
-    };
-})();
-
-const Accordion = (() => {
-
-    const removeActiveClass = () => {
+    const removeActiveClass = function () {
 
         $('.accordion-item-content').removeClass('active').hide('slow');
         $('.fa-arrow-up').attr('style', 'display: none;');
@@ -189,9 +149,9 @@ const Accordion = (() => {
         accordionLink.children('.fa-arrow-up').attr('style', `display: ${arrow_up_display};`);
     };
 
-    const init = () => {
+    const init = function () {
 
-        $(".accordion-item").on('click', () => {
+        $(".accordion-item").on('click', function () {
 
             const accordionItem = $(this);
             const accordionItemContent = accordionItem.children('.accordion-item-content');
@@ -219,20 +179,20 @@ const Accordion = (() => {
     };
 })();
 
-const FloatFormGroup = (() => {
+const FloatFormGroup = (function () {
 
-    const init = () => {
+    const init = function () {
 
-        $(".float-form-group").each(() => {
+        $(".float-form-group").each(function () {
 
             const floatFormGroup = $(this);
             const floatField = floatFormGroup.children('.floatField');
 
-            floatField.on('focus', () => {
+            floatField.on('focus', function () {
                 floatFormGroup.addClass('active');
             });
 
-            floatField.on('blur', () => {
+            floatField.on('blur', function () {
 
                 if (!floatField.val()) {
 
@@ -252,36 +212,58 @@ const FloatFormGroup = (() => {
     };
 })();
 
-const FlexSliderMiddle = (() => {
+const FlexSliderMiddle = (function () {
 
-    const init = () => {
+    const init = function () {
 
         const totalSliderItems = $(".flex-slider-item").length - 1;
+        let firstSliderVisible = 0;
         let lastSliderVisible = 2;
 
-        // $(".flex-prev-arrow").on('click', () => {
-        //     console.log("PREVIOUS");
-        // });
+        $(".flex-prev-arrow").on('click', function () {
+            console.log(`lastSliderVisible: ${lastSliderVisible}`);
 
-        $(".flex-next-arrow").on('click', () => {
+            let isFirst = (lastSliderVisible == 2);
+            let threshold = totalSliderItems - 3;
 
-            let isFirst = (lastSliderVisible == totalSliderItems);
-            let threshold = lastSliderVisible + 3;
-
-            $(".flex-slider-item").removeClass("active").each((index, element) => {
+            $(".flex-slider-item").removeClass("active-slider").each((index, element) => {
 
                 const sliderItem = $(element);
 
                 if (isFirst) {
-                    if (index <= 2) {
-                        sliderItem.addClass("active");
-                    }
-                } else {
-                    if (index > lastSliderVisible && index <= threshold) {
-                        sliderItem.addClass("active");
-                    }
-                }
 
+                    if (index > threshold && index <= totalSliderItems) {
+                        sliderItem.addClass("active-slider");
+                    }
+
+                } else {
+
+                }
+            });
+
+            if (isFirst) {
+                lastSliderVisible = threshold;
+            } else {
+
+            }
+        });
+
+        $(".flex-next-arrow").on('click', function () {
+
+            let isFirst = (lastSliderVisible == totalSliderItems);
+            let threshold = lastSliderVisible + 3;
+
+            $(".flex-slider-item").removeClass("active-slider").each((index, element) => {
+
+                const sliderItem = $(element);
+
+                if (isFirst && index <= 2) {
+                    sliderItem.addClass("active-slider");
+
+                } else if (index > lastSliderVisible && index <= threshold) {
+                    sliderItem.addClass("active-slider");
+
+                }
             });
 
             if (isFirst) {
@@ -300,15 +282,15 @@ const FlexSliderMiddle = (() => {
 $(function () {
 
     // Anchor to the middle section
-    $('.slide-down-to').on('click', () => {
+    $('.slide-down-to').on('click', function () {
         $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
     });
 
     // Slider top
     TopSlider.init();
 
-    // Slider middle
-    MiddleSlider.init();
+    // FlexSliderMiddle
+    FlexSliderMiddle.init();
 
     // Accordion
     Accordion.init();
@@ -316,6 +298,4 @@ $(function () {
     // Floating labels
     FloatFormGroup.init();
 
-    // FlexSliderMiddle
-    FlexSliderMiddle.init();
 });
