@@ -210,6 +210,14 @@ body {
   color: #ffffff;
 }
 
+.flex-slider-item {
+  display: none;
+}
+
+.flex-slider-item.active {
+  display: block;
+}
+
 .flex-image {
   display: block;
   border: 10px solid #707070;

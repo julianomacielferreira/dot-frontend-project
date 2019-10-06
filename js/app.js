@@ -138,7 +138,7 @@ const MiddleSlider = (() => {
 
     const setup_next_arrow = () => {
 
-        $('.next').on('click', function () {
+        $('.next').on('click', () => {
             let currentImg = $('.active-slider');
             let nextImg = currentImg.next();
 
@@ -151,7 +151,7 @@ const MiddleSlider = (() => {
 
     const setup_prev_arrow = () => {
 
-        $('.prev').on('click', function () {
+        $('.prev').on('click', () => {
             let currentImg = $('.active-slider');
             let prevImg = currentImg.prev();
 
@@ -183,15 +183,15 @@ const Accordion = (() => {
         $('.fa-arrow-down').attr('style', 'display: block;');
     };
 
-    const changeArrowsTo = (accordionLink, down, up) => {
+    const changeArrowsTo = (accordionLink, arrow_down_display, arrow_up_display) => {
 
-        accordionLink.children('.fa-arrow-down').attr('style', `display: ${down};`);
-        accordionLink.children('.fa-arrow-up').attr('style', `display: ${up};`);
+        accordionLink.children('.fa-arrow-down').attr('style', `display: ${arrow_down_display};`);
+        accordionLink.children('.fa-arrow-up').attr('style', `display: ${arrow_up_display};`);
     };
 
     const init = () => {
 
-        $(".accordion-item").on('click', function () {
+        $(".accordion-item").on('click', () => {
 
             const accordionItem = $(this);
             const accordionItemContent = accordionItem.children('.accordion-item-content');
@@ -223,7 +223,7 @@ const FloatFormGroup = (() => {
 
     const init = () => {
 
-        $(".float-form-group").each(function () {
+        $(".float-form-group").each(() => {
 
             const floatFormGroup = $(this);
             const floatField = floatFormGroup.children('.floatField');
@@ -252,6 +252,25 @@ const FloatFormGroup = (() => {
     };
 })();
 
+const FlexSliderMiddle = (() => {
+
+    const init = () => {
+
+
+        $(".flex-prev-arrow").on('click', () => {
+            console.log("PREVIOUS");
+        });
+
+        $(".flex-next-arrow").on('click', () => {
+            console.log("NEXT");
+        });
+    };
+
+    return {
+        init: init
+    };
+})();
+
 $(function () {
 
     // Anchor to the middle section
@@ -270,4 +289,7 @@ $(function () {
 
     // Floating labels
     FloatFormGroup.init();
+
+    // FlexSliderMiddle
+    FlexSliderMiddle.init();
 });
