@@ -256,13 +256,39 @@ const FlexSliderMiddle = (() => {
 
     const init = () => {
 
+        const totalSliderItems = $(".flex-slider-item").length - 1;
+        let lastSliderVisible = 2;
 
-        $(".flex-prev-arrow").on('click', () => {
-            console.log("PREVIOUS");
-        });
+        // $(".flex-prev-arrow").on('click', () => {
+        //     console.log("PREVIOUS");
+        // });
 
         $(".flex-next-arrow").on('click', () => {
-            console.log("NEXT");
+
+            let isFirst = (lastSliderVisible == totalSliderItems);
+            let threshold = lastSliderVisible + 3;
+
+            $(".flex-slider-item").removeClass("active").each((index, element) => {
+
+                const sliderItem = $(element);
+
+                if (isFirst) {
+                    if (index <= 2) {
+                        sliderItem.addClass("active");
+                    }
+                } else {
+                    if (index > lastSliderVisible && index <= threshold) {
+                        sliderItem.addClass("active");
+                    }
+                }
+
+            });
+
+            if (isFirst) {
+                lastSliderVisible = 2;
+            } else {
+                lastSliderVisible = threshold;
+            }
         });
     };
 
