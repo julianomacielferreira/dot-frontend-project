@@ -245,9 +245,6 @@ const FlexSliderMiddle = (() => {
                 firstSliderVisible = lastSliderVisible + 1;
                 lastSliderVisible = threshold;
             }
-
-            console.log(`firstSliderVisible: ${firstSliderVisible}`);
-            console.log(`lastSliderVisible: ${lastSliderVisible}`);
         });
 
         $(".flex-prev-arrow").on('click', function () {
@@ -256,16 +253,10 @@ const FlexSliderMiddle = (() => {
             let startAt = isToWrap ? (totalSliderItems - 3) : firstSliderVisible - 3;
             let threshold = startAt + 3;
 
-            console.log(`isToWrap: ${isToWrap}`);
-            console.log(`startAt: ${startAt}`);
-            console.log(`threshold: ${threshold}`);
-            console.log(`firstSliderVisible: ${firstSliderVisible}`);
-            console.log(`lastSliderVisible: ${lastSliderVisible}`);
-
             $(".flex-slider-item").removeClass("active").each(function (index, element) {
 
                 const sliderItem = $(element);
-                const conditionToAddClass = (isToWrap && index >= startAt && index < threshold);
+                const conditionToAddClass = (isToWrap && index > startAt && index <= threshold);
 
                 if (conditionToAddClass) {
                     sliderItem.addClass("active");
@@ -278,14 +269,16 @@ const FlexSliderMiddle = (() => {
                 }
             });
 
-            // if (!isToWrap) {
+            if (isToWrap) {
 
-            //     firstSliderVisible = startAt + 1;
-            //     lastSliderVisible = threshold;
+                firstSliderVisible = startAt + 1;
+                lastSliderVisible = threshold;
 
-            // } else {
+            } else {
 
-            // }
+                firstSliderVisible = startAt;
+                lastSliderVisible = threshold - 1;
+            }
         });
     };
 
