@@ -1,19 +1,19 @@
 import $ from 'jquery';
 
-const TopSlider = (function () {
+const TopSlider = (() => {
 
     const slider = $('.slider-top');
     const intervalTimeout = 3000;
     const animationTimeout = 1000;
     let intervalID = null;
 
-    const stop = function () {
+    const stop = () => {
 
         clearInterval(intervalID);
         intervalID = null;
     };
 
-    const start = function () {
+    const start = () => {
 
         if (!intervalID) {
 
@@ -24,7 +24,7 @@ const TopSlider = (function () {
         }
     };
 
-    const wrap = function () {
+    const wrap = () => {
 
         const sliderTopItemNotClone = slider.find('.slider-top-item:not(.clone)');
 
@@ -34,7 +34,7 @@ const TopSlider = (function () {
         }
     };
 
-    const change_slide = function () {
+    const change_slide = () => {
 
         set_slider_at(
             set_slider_at() + 1, // Se não tem position ele vai calcular automaticamente
@@ -42,7 +42,7 @@ const TopSlider = (function () {
         );
     };
 
-    const update_bullets = function () {
+    const update_bullets = () => {
 
         const sliderTopBullets = slider.find('.slider-top-bullet');
         sliderTopBullets.removeClass('active');
@@ -81,7 +81,7 @@ const TopSlider = (function () {
         });
     };
 
-    const setup = function () {
+    const setup = () => {
 
         const sliderTopItems = slider.find('.slider-top-item');
 
@@ -122,7 +122,7 @@ const TopSlider = (function () {
         sliderTopItems.css('left', '-=' + slider.width() + 'px');
     };
 
-    const init = function () {
+    const init = () => {
 
         setup();
 
@@ -134,9 +134,9 @@ const TopSlider = (function () {
     };
 })();
 
-const Accordion = (function () {
+const Accordion = (() => {
 
-    const removeActiveClass = function () {
+    const removeActiveClass = () => {
 
         $('.accordion-item-content').removeClass('active').hide('slow');
         $('.fa-arrow-up').attr('style', 'display: none;');
@@ -149,7 +149,7 @@ const Accordion = (function () {
         accordionLink.children('.fa-arrow-up').attr('style', `display: ${arrow_up_display};`);
     };
 
-    const init = function () {
+    const init = () => {
 
         $(".accordion-item").on('click', function () {
 
@@ -179,9 +179,9 @@ const Accordion = (function () {
     };
 })();
 
-const FloatFormGroup = (function () {
+const FloatFormGroup = (() => {
 
-    const init = function () {
+    const init = () => {
 
         $(".float-form-group").each(function () {
 
@@ -212,64 +212,60 @@ const FloatFormGroup = (function () {
     };
 })();
 
-const FlexSliderMiddle = (function () {
+const FlexSliderMiddle = (() => {
 
-    const init = function () {
+    const init = () => {
 
         const totalSliderItems = $(".flex-slider-item").length - 1;
         let firstSliderVisible = 0;
         let lastSliderVisible = 2;
 
-        $(".flex-prev-arrow").on('click', function () {
-            console.log(`lastSliderVisible: ${lastSliderVisible}`);
+        $(".flex-next-arrow").on('click', function () {
 
-            let isFirst = (lastSliderVisible == 2);
-            let threshold = totalSliderItems - 3;
+            let isToWrap = (lastSliderVisible == totalSliderItems);
+            let threshold = lastSliderVisible + 3;
 
-            $(".flex-slider-item").removeClass("active-slider").each((index, element) => {
+            $(".flex-slider-item").removeClass("active").each(function (index, element) {
 
                 const sliderItem = $(element);
+                const conditionToAddClass = (isToWrap && index <= 2) || (index > lastSliderVisible && index <= threshold);
 
-                if (isFirst) {
-
-                    if (index > threshold && index <= totalSliderItems) {
-                        sliderItem.addClass("active-slider");
-                    }
-
-                } else {
-
+                if (conditionToAddClass) {
+                    sliderItem.addClass("active");
                 }
             });
 
-            if (isFirst) {
-                lastSliderVisible = threshold;
+            if (isToWrap) {
+
+                firstSliderVisible = 0;
+                lastSliderVisible = 2;
+
             } else {
 
+                firstSliderVisible = lastSliderVisible - 3;
+                lastSliderVisible = threshold;
             }
         });
 
-        $(".flex-next-arrow").on('click', function () {
+        $(".flex-prev-arrow").on('click', function () {
 
-            let isFirst = (lastSliderVisible == totalSliderItems);
-            let threshold = lastSliderVisible + 3;
+            let isToWrap = (firstSliderVisible == 0);
+            let threshold = totalSliderItems - 3;
 
-            $(".flex-slider-item").removeClass("active-slider").each((index, element) => {
+            $(".flex-slider-item").removeClass("active").each(function (index, element) {
 
                 const sliderItem = $(element);
+                const conditionToAddClass = (isToWrap && index > threshold && index <= totalSliderItems);
 
-                if (isFirst && index <= 2) {
-                    sliderItem.addClass("active-slider");
-
-                } else if (index > lastSliderVisible && index <= threshold) {
-                    sliderItem.addClass("active-slider");
-
+                if (conditionToAddClass) {
+                    sliderItem.addClass("active");
                 }
             });
 
-            if (isFirst) {
-                lastSliderVisible = 2;
-            } else {
-                lastSliderVisible = threshold;
+            if (isToWrap) {
+
+                firstSliderVisible = threshold;
+                lastSliderVisible = totalSliderItems;
             }
         });
     };
@@ -279,7 +275,7 @@ const FlexSliderMiddle = (function () {
     };
 })();
 
-$(function () {
+$(() => {
 
     // Anchor to the middle section
     $('.slide-down-to').on('click', function () {
