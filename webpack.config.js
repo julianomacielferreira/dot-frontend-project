@@ -4,7 +4,7 @@ module.exports = [{
     mode: 'development',
     entry: ['./css/app.css', './js/app.js'],
     output: {
-        filename: 'bundle.js',
+        filename: 'dist/bundle.js',
     },
     module: {
         rules: [
@@ -14,7 +14,7 @@ module.exports = [{
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'bundle.css',
+                            name: 'dist/bundle.css',
                         },
                     },
                     { loader: 'extract-loader' },

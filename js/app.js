@@ -279,7 +279,7 @@ $(() => {
 
     // Anchor to the middle section
     $('.slide-down-to').on('click', function () {
-        $('.container-slider-middle')[0].scrollIntoView({ behavior: 'smooth' });
+        $('.flex')[0].scrollIntoView({ behavior: 'smooth' });
     });
 
     // Slider top
