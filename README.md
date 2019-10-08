@@ -33,10 +33,10 @@ Differential:
 - Animated effects on interactive elements;
 - Use task automator (gulp).
 
-Layout desktop:
+Desktop Layout:
 
 ![](img/layout-desktop.png)
 
-Layout mobile:
+Mobile Layout:
 
 ![](img/layout-mobile.png)
