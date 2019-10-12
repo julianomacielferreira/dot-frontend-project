@@ -6,8 +6,7 @@ URL: [https://dot-frontend-project.firebaseapp.com/](https://dot-frontend-projec
 
 Objective:
 
-- Develop the front end of PSD files available at the link;
-- O resultado deve ser responsivo e a versão mobile deve condizer com o arquivo PSD mobile;
+- Develop the front end of PSD files given;
 - The result should be responsive and the mobile version should match the mobile PSD file;
 
 Observations:
