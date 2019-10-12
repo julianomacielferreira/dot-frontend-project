@@ -2,14 +2,14 @@
 
 Project Developed for the Full Front End position.
 
-URL: [https://dot-frontend-project.firebaseapp.com/](https://dot-frontend-project.firebaseapp.com/)
+[https://dot-frontend-project.firebaseapp.com/](https://dot-frontend-project.firebaseapp.com/)
 
-Objective:
+## Objectives:
 
 - Develop the front end of PSD files given;
 - The result should be responsive and the mobile version should match the mobile PSD file;
 
-Observations:
+## Observations:
 
 - It is allowed to use jQuery;
 - It is not allowed to use CSS framework and pre processors;
@@ -17,7 +17,7 @@ Observations:
 - It is not allowed to use Angular, Bootstrap, React, Vue, etc;
 - The final content should be functional in the latest and next to last version of major browsers, as well as version 9 of the Internet Explorer browser.
 
-Functionalities:
+## Functionalities:
 
 - By clicking on the top arrow the screen should scroll to the second section (with dark gray background and slider with images and text);
 - The top should contain a slider, where when clicking on one of the three balls, the background image of the top is changed and the clicked ball should be highlighted;
@@ -27,15 +27,53 @@ Functionalities:
 - In the fifth section (form) the background should contain two colors divided by a triangular shape. The contact form must contain masks and be validated by clicking the "submit" button;
 - The footer should include the centered text.
 
-Differential:
+## Differential:
 
 - Animated effects on interactive elements;
 - Use task automator (gulp).
 
-Desktop Layout:
+## Install Dependencies
+
+**1. Check if you have a recent version of [Node.js](https://nodejs.org/) (which comes bundled with [npm](https://www.npmjs.com/), a JavaScript package manager):**
+
+```bash
+$ node -v
+```
+
+```bash
+$ npm -v
+```
+
+**2. In the _project root directory_ install all the dependencies and libs:**
+
+```bash
+$ npm install
+```
+
+## Start webpack-dev-server
+
+**1. Run the following command:**
+
+```bash
+$ npm run start
+```
+
+**Or to generate all the bundle:**
+
+```bash
+$ npm run build
+```
+
+The files will be created in the folder **/dist**.
+
+**2. And then access [http://localhost:8080/](http://localhost:8080/) on your browser (it's setup to open automatically).**
+
+# Screenshots
+
+## Desktop Layout:
 
 ![](img/layout-desktop.png)
 
-Mobile Layout:
+## Mobile Layout:
 
 ![](img/layout-mobile.png)
