@@ -76,3 +76,7 @@ The files will be created in the folder **/dist**.
 ## Mobile Layout:
 
 ![](img/layout-mobile.png)
+
+# License
+
+Please see the [license agreement](https://github.com/julianomacielferreira/dot-frontend-project/blob/master/LICENSE).
