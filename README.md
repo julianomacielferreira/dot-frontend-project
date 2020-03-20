@@ -71,9 +71,11 @@ The files will be created in the folder **/dist**.
 
 ## Desktop Layout:
 
-![](img/layout-desktop.png)
+| Given             |  Mine |
+:-------------------------:|:-------------------------:
+![](img/layout-desktop.png) | ![](img/screenshots/1.png) ![](img/screenshots/2.png) ![](img/screenshots/3.png) ![](img/screenshots/4.png) ![](img/screenshots/5.png)
 
-## Mobile Layout:
+## Mobile Layout (Not completed):
 
 ![](img/layout-mobile.png)
 
